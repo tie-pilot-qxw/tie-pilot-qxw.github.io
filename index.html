@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>扫雷</title>
+		<style type="text/css">
+			body {background-image:url('background.jpg');background-repeat:no-repeat;background-size:100%;background-color:rgb(34,34,34);}
+			#abc {color:white;margin-right:auto;margin-left:auto;margin-top:100px;width:200px;height:auto;line-height:0px;}
+		</style>
+		<script>
+			function serch(x,y){
+				var left,right;
+				var book=new Array;
+				for(var i=0;i<130;i++){
+					book[i]=Object();
+					book[i].x=0;
+					book[i].y=0;
+				}
+				left=0;
+				right=1;
+				booka[x][y]=1;
+				book[0].x=x;
+				book[0].y=y;
+				while(left<right){
+					changeImage(book[left].x,book[left].y);
+					if(map[book[left].x][book[left].y]==0){
+						for(var y=0;y<8;y++){
+							var xt=book[left].x+d[y][0];
+							var yt=book[left].y+d[y][1];
+							if(xt>=0&&xt<10&&yt>=0&&yt<10){
+								if(map[xt][yt]!=9&&booka[xt][yt]!=1){
+									book[right].x=xt;
+									book[right].y=yt;
+									booka[book[right].x][book[right].y]=1;
+									right++;
+								}
+							}
+						}
+					}
+					left++;
+				}
+				findTime();
+				return;
+			}
+			function changeImage(x,y){
+				var num=x.toString()+y.toString();
+				element=document.getElementById(num);
+				if(map[x][y]==9&&flag==1){
+					element.src="pics/openlandmine.jpg";
+					alert("你输了!");
+					flag=2;
+					clean();
+				}else if(map[x][y]==9&&flag==2){
+					if(!element.src.match("openlandmine"))element.src="pics/runlandmine.jpg";
+				}else if(map[x][y]==9&&flag==0){
+					element.src="pics/unopenlandmine.jpg";
+				}
+				else element.src="pics/"+map[x][y]+".jpg";
+			}
+			function clean(){
+				for(var i=0;i<10;i++){
+					for(var j=0;j<10;j++){
+						changeImage(i,j);
+					}
+				}
+			}
+			function findTime(){
+				var time=0;
+				for(var i=0;i<10;i++){
+					for(var j=0;j<10;j++){
+						var num=i.toString()+j.toString();
+						element=document.getElementById(num);
+						if(element.src.match("unknow")||element.src.match("flag")){
+							time++;
+						}
+					}
+				}
+				if(time==10&&flag==1){
+					alert("你赢了!");
+					flag=0;
+					clean();
+				}	
+			}
+			function whichButton(event,x,y){
+				var btnNum = event.button;
+				var num=x.toString()+y.toString();
+				if(isFirst==1){
+					isFirst=0;
+					start(x,y);
+					serch(x,y);
+				}else{
+					if(flag==1){
+						if (btnNum==2){
+							var num=x.toString()+y.toString();
+							element=document.getElementById(num);
+							if(element.src.match("unknow")){
+								element.src="pics/flag.jpg";
+							}else if(element.src.match("flag")){
+								element.src="pics/question.jpg";
+							}else if(element.src.match("question")){
+								element.src="pics/unknow.jpg";
+							}
+						}else if(btnNum==0){
+							element=document.getElementById(num);
+							if(element.src.match("unknow")){
+								serch(x,y);
+							}
+						}
+					}
+				}
+			}
+			function start(x,y){
+				bookb[x][y]=-1;
+				for(var k=0;k<8;k++){
+					var xi=x+d[k][0];
+					var yi=y+d[k][1];
+					if(xi>=0&&xi<10&&yi>=0&&yi<10){
+						bookb[xi][yi]=-1;
+					}
+				}
+				for(var i=0;i<10;i++){
+					var xa,ya;
+					do{
+						xa=Math.floor(Math.random()*10);
+						ya=Math.floor(Math.random()*10);
+					}while(map[xa][ya]==9||bookb[xa][ya]==-1)
+					map[xa][ya]=9;
+					for(var k=0;k<8;k++){
+						var xi=xa+d[k][0];
+						var yi=ya+d[k][1];
+						if(xi>=0&&xi<10&&yi>=0&&yi<10){
+							if(map[xi][yi]!=9){
+								map[xi][yi]++;
+							}
+						}
+					}
+				}
+//				for(var i=0;i<10;i++){
+//					for(var j=0;j<10;j++){
+//						document.write(map[i][j]+" ");
+//					}
+//					document.write("<br />");
+//				}
+			}
+		</script>
+	</head>
+	<body>
+		<script>
+			document.oncontextmenu = function(){return false;}
+ 		</script> 
+		<script>
+			var isFirst=1; 
+			var booka=new Array;
+			for(var i=0;i<10;i++){
+				booka[i]=new Array;
+				for(var j=0;j<10;j++){
+					booka[i][j]=0;
+				}
+			}
+			var bookb=new Array;
+			for(var i=0;i<10;i++){
+				bookb[i]=new Array;
+				for(var j=0;j<10;j++){
+					bookb[i][j]=0;
+				}
+			}
+			var map=new Array;
+			for(var i=0;i<10;i++){
+				map[i]=new Array;
+				for(var j=0;j<10;j++){
+					map[i][j]=0;
+				}
+			}
+			var d=new Array;
+			for(var i=0;i<8;i++){
+				d[i]=new Array;
+				for(var j=0;j<2;j++){
+					d[i][j]=0;
+				}
+			}
+			d[0][0]=-1;
+			d[1][0]=-1;
+			d[2][0]=-1;
+			d[3][0]=0;
+			d[4][0]=0;
+			d[5][0]=1;
+			d[6][0]=1;
+			d[7][0]=1;
+			d[0][1]=-1;
+			d[1][1]=0;
+			d[2][1]=1;
+			d[3][1]=-1;
+			d[4][1]=1;
+			d[5][1]=-1;
+			d[6][1]=0;
+			d[7][1]=1;
+		</script>
+		<div id="abc">
+			<script>
+				var flag=1;
+				var num = 10;
+				var a = '"';
+				for(var i = 0;i<num;i++){
+					for(var j=0;j<num;j++){
+						document.write("<img id='"+i+j+"' onmousedown="+a+"whichButton(event,"+i+","+j+")"+a+" src='pics/unknow.jpg' width='20' height='20'/>");
+					}
+					document.write("<br />");
+				}
+			</script>
+		</div> 
+	</body>
+</html>
