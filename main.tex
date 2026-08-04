@@ -1,0 +1,165 @@
+\documentclass[10pt, letterpaper]{article}
+
+\usepackage[
+    ignoreheadfoot,
+    top=1.8cm,
+    bottom=1.8cm,
+    left=1.8cm,
+    right=1.8cm,
+    footskip=1.0cm
+]{geometry}
+
+\usepackage{
+    titlesec,
+    xcolor,
+    enumitem,
+    needspace,
+    iftex,
+    hyperref
+}
+
+\definecolor{primaryColor}{RGB}{0,0,0}
+
+\hypersetup{
+    pdftitle={Xinwei Qiang — CV},
+    pdfauthor={Xinwei Qiang},
+    pdfcreator={LaTeX},
+    colorlinks=true,
+    urlcolor=primaryColor
+}
+
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+\fi
+
+\usepackage{charter}
+
+\raggedright
+\pagestyle{empty}
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\topskip}{0pt}
+\pagenumbering{gobble}
+
+\titleformat{\section}
+    {\needspace{4\baselineskip}\bfseries\large}
+    {}
+    {0pt}
+    {}
+    [\vspace{1pt}\titlerule]
+
+\titlespacing{\section}{-1pt}{0.25cm}{0.15cm}
+
+\newcommand{\cvulink}[2]{\underline{\href{#1}{#2}}}
+\newcommand{\pubsep}{\vspace{3pt}}
+\newcommand{\entrysep}{\vspace{4pt}}
+
+\begin{document}
+
+% ===== Header =====
+{\LARGE \textbf{Xinwei Qiang}}\\[4pt]
+
+\cvulink{mailto:x2qiang@ucsd.edu}{x2qiang@ucsd.edu}
+\;|\;
+\cvulink{https://github.com/tie-pilot-qxw}{github.com/tie-pilot-qxw}
+
+\vspace{4pt}
+
+\textbf{Research interests:}
+GPU systems, compilers, and distributed systems.
+
+% ===== Publications =====
+\section{Publications}
+
+{[\emph{SC '26}]}
+FluxZK: Scalable and Efficient Zero-Knowledge Proof Computation via GPU Acceleration.\\
+\textbf{Xinwei Qiang}*, Liukun Yu*, Xiyu Wang, Zhengyi Li,
+Shixuan Sun, Jingwen Leng, Chen Chen, Jiaping Gui,
+Zhenzhe Zheng, Jin Dong, Minyi Guo
+
+\pubsep
+
+{[\emph{OSDI '26}]}
+Syncopate: Efficient Multi-GPU AI Kernels via Automatic
+Chunk-Centric Compute-Communication Overlap.\\
+\textbf{Xinwei Qiang}*, Yue Guan*, Zhengding Hu, Keren Zhou,
+Yufei Ding, Adnan Aziz
+
+\pubsep
+
+{[\emph{ICML '26}]}
+TritonGym: A Benchmark for Agentic LLM Workflows in Triton GPU Code.\\
+Yue Guan, Yichen Lin, Xu Zhao, Jianzhu Yao,
+\textbf{Xinwei Qiang}, Zhongkai Yu, Pramod Viswanath,
+Yufei Ding, Adnan Aziz
+
+\pubsep
+
+{[\emph{ICLR '26}]}
+DASH: Deterministic Attention Scheduling for High-throughput
+Reproducible LLM Training.\\
+\textbf{Xinwei Qiang}, Hongmin Chen, Shixuan Sun,
+Jingwen Leng, Xin Liu, Minyi Guo
+
+\pubsep
+
+{[\emph{SOSP '25}]}
+Mercury: Unlocking Multi-GPU Operator Optimization for LLMs
+via Remote Memory Scheduling.\\
+Yue Guan, \textbf{Xinwei Qiang}, Zaifeng Pan,
+Daniels Johnson, Yuanwei Fang, Keren Zhou, Yuke Wang,
+Wanlu Li, Yufei Ding, Adnan Aziz
+
+\vspace{2pt}
+
+{\small * Equal contribution.}
+
+% ===== Research Appointments =====
+\section{Research Appointments}
+
+\textbf{Research Assistant}, EPCC Lab,
+Shanghai Jiao Tong University
+\hfill Jul 2024 -- Jun 2026\\
+\textit{
+Co-advised by Profs.
+\cvulink{https://www.cs.sjtu.edu.cn/~leng-jw/}{Jingwen Leng}
+and
+\cvulink{https://shixuansun.github.io/}{Shixuan Sun}
+}
+
+\entrysep
+
+\textbf{Research Intern}, Picasso Lab,
+University of California San Diego
+\hfill Jul 2025 -- Dec 2025\\
+\textit{
+Advisor:
+Prof. \cvulink{https://sites.google.com/ucsd.edu/yufeiding}{Yufei Ding}
+}
+
+% ===== Education =====
+\section{Education}
+
+\textbf{University of California San Diego}
+— Ph.D. in Computer Science
+\hfill Starting Fall 2026\\
+Advisor:
+Prof. \cvulink{https://sites.google.com/ucsd.edu/yufeiding}{Yufei Ding}
+
+\entrysep
+
+\textbf{Shanghai Jiao Tong University}
+— B.E. in Computer Science
+\hfill Sept 2022 -- Jun 2026\\
+John Hopcroft Class, an honors program in computer science.
+
+% ===== Technical Skills =====
+\section{Technical Skills}
+
+\textbf{Programming:}
+C/C++, CUDA, Python, Rust, Triton
+
+\end{document}
