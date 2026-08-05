@@ -126,6 +126,10 @@ h1 {
   letter-spacing: -0.025em;
 }
 
+.intro h1 {
+  font-size: clamp(32px, 5vw, 44px);
+}
+
 h2 {
   margin-bottom: 28px;
   font-family: Georgia, "Times New Roman", serif;
