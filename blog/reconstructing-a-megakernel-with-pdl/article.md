@@ -1,7 +1,7 @@
 ---
 title: "81 Kernels, 97.4% of a Megakernel: Reconstructing Persistence with PDL"
 description: "With PDL, an 81-kernel non-persistent CUDA Graph reaches 97.4% of the persistent path's end-to-end throughput on H100."
-authors: "Xinwei Qiang, Ziyi Xu, Yue Guan, and Yufei Ding"
+authors: "Xinwei Qiang, Ziyi Xu, Zhongkai Yu, Yue Guan, and Yufei Ding"
 date: "August 5, 2026"
 tags:
   - CUDA
