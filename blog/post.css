@@ -2,6 +2,11 @@
   background: var(--background);
 }
 
+.embed-lab .post-page .site-header,
+.embed-lab .post-page footer {
+  display: none;
+}
+
 .reading-progress {
   position: fixed;
   z-index: 100;

@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="$description$" />
     <title>$title$ · Xinwei Qiang</title>
+    <script>
+      if (new URLSearchParams(window.location.search).get("embed") === "lab") {
+        document.documentElement.classList.add("embed-lab");
+      }
+    </script>
     <link rel="icon" href="/favicon.ico?v=20260805-3" sizes="any" />
     <link rel="icon" href="/favicon.svg?v=20260805-3" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20260805-3" />
