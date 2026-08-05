@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="$description$" />
+    <title>$title$ · Xinwei Qiang</title>
+    <link rel="icon" href="/favicon.ico?v=20260805-3" sizes="any" />
+    <link rel="icon" href="/favicon.svg?v=20260805-3" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20260805-3" />
+    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="../post.css" />
+    <script src="../post.js" defer></script>
+  </head>
+  <body class="post-page">
+    <div class="reading-progress" aria-hidden="true"><span></span></div>
+
+    <header class="site-header">
+      <a class="name" href="../../">Xinwei Qiang</a>
+      <nav aria-label="Primary navigation">
+        <a href="../../#news">News</a>
+        <a href="../../#publications">Publications</a>
+        <a href="../../#experience">Experience</a>
+        <a href="../" aria-current="page">Blog</a>
+        <a href="../../main.pdf">CV</a>
+      </nav>
+    </header>
+
+    <section class="post-banner">
+      <div class="post-banner-inner">
+        <p class="post-kicker"><a href="../">Blog</a> / Engineering Notes</p>
+        <h1>$title$</h1>
+        <div class="post-tags" aria-label="Article topics">
+          $for(tags)$<span>$tags$</span>$endfor$
+        </div>
+        <p class="post-byline">$authors$ <span aria-hidden="true">·</span> $date$</p>
+      </div>
+    </section>
+
+    <main class="post-layout" id="article">
+      <aside class="toc-sidebar" aria-label="Table of contents">
+        <p class="toc-heading">On this page</p>
+        $toc$
+      </aside>
+      <article class="post-content">
+        $body$
+      </article>
+    </main>
+
+    <footer>
+      <p>Xinwei Qiang · <a href="mailto:x2qiang@ucsd.edu">x2qiang@ucsd.edu</a></p>
+    </footer>
+  </body>
+</html>
