@@ -3,7 +3,19 @@
 A simple, responsive, framework-free academic website generated from the information in `main.tex`.
 
 The standalone blog index lives at `blog/index.html`. Add future post entries there and place each
-post in its own subdirectory under `blog/`.
+post in its own subdirectory under `blog/`. Each post directory should contain an `article.md`;
+the build script discovers all such posts, generates their `index.html` files and refreshes the
+site-wide `sitemap.xml` automatically:
+
+```bash
+./scripts/build_blog.sh
+```
+
+To refresh only the sitemap after adding another standalone page, run:
+
+```bash
+./scripts/build_sitemap.sh
+```
 
 ## Preview
 
