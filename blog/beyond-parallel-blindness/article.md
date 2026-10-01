@@ -120,7 +120,7 @@ For DFlash on Qwen3-4B, the model gap is the bigger part of the rejection at eve
 
 DSpark is more striking. Its order-1 floor is tiny. Even when we hand its Markov head the *true* previous token, 85% or more of its rejection is model gap. It has the information. It just doesn't turn it into acceptance.
 
-When DSpark uses its own guessed previous token instead of the true one, rejection gets worse again. We call this extra the exposure difference. It shows how sensitive the head is to its own mistakes.
+When DSpark uses its own guessed previous token instead of the true one, rejection gets worse again. We call this extra the exposure difference. It shows how sensitive the head is to its own mistakes. It is not a serving loss, though. Verification stops at the first rejection, so a position is only ever used when the token before it was accepted. Where it matters, the head always sees the right previous token.
 
 For the frontier model we cannot run the drafter ourselves, so the comparison is indirect. But it points the same way: its order-1 floor is small, while its published serving numbers imply a much larger rejection.
 
@@ -154,7 +154,17 @@ In plain words: the previous token gets to ask the context "given that I came ri
 
 Importantly, the head sees exactly what DSpark sees: the committed context plus one previous token. Its floor is the same. Any gain has to come from using that information better, not from seeing more.
 
-We also borrow a few things that fit the heavier head. From DFlash2, we take top-16 candidate scoring and a short lattice walk to pick the draft chain. We add a small two-tap convolution in the backbone, learned slot embeddings, and a loss that teaches the backbone to nominate good candidates.
+We also borrow a few things that fit the heavier head. The most important one is DFlash2's lattice walk, and it is worth a short detour.
+
+A head that looks at the previous token is naturally sequential. You sample position 1, feed it to the head to get position 2, sample again, and so on. That is a Markov walk. DSpark's head is light enough to walk this way. Ours runs attention, and calling it once per position would be slow.
+
+The lattice walk is the same walk with one twist: it guesses ahead of time which tokens the walk could go through. First, the backbone nominates its top 16 candidates at each position. Then the head scores every pair of (previous candidate, next candidate), at every position, in one parallel call. That gives a small score table per position, and the walk itself becomes a few cheap lookups.
+
+So it is not a new kind of proposal. It is the Markov walk, restricted to the guessed candidates. If you let the candidate set be the whole vocabulary, it picks exactly the same tokens as the sequential walk. The up-front guess is the only thing that makes it parallel.
+
+The guess has a price, though. If the target's token is not among the 16 candidates, the drafter can never propose it, so the restriction can cost some accepted length. In one of our measurements, restricting a DSpark head to its own top 16 cost about 2%. That is why we add a nomination loss, which trains the backbone so that its top 16 usually contain the target's choice. With that loss, the same restriction cost almost nothing.
+
+Besides the lattice, we add a small two-tap convolution in the backbone and learned slot embeddings.
 
 Results on Qwen3-4B, against the released DSpark checkpoint:
 
@@ -164,7 +174,7 @@ Results on Qwen3-4B, against the released DSpark checkpoint:
 - Mean accepted length goes up by 3–4% across nine benchmarks.
 - It is faster end to end at both temperatures (about 3.6× → 3.8× over plain decoding at temperature 0, and 3.3× → 3.5× at temperature 1), even with the heavier head.
 
-One honest caveat: the exposure difference got larger. A head that is better when given the right previous token is not automatically more robust to a wrong one. That is still open.
+The exposure difference did get larger. As noted above, that costs nothing in serving: a position is only used when the token before it was accepted, so the head always sees the right previous token where it counts. What matters is the prediction given the right previous token, and that is the one that improved.
 
 ## Making it cheap to train, and fast to serve
 
