@@ -32,9 +32,11 @@ Classic drafters, like the EAGLE family, still guess one token at a time. They a
 
 Block drafters take a different route. They guess the whole block in a single forward pass. Put 7 mask tokens after the context, run once, and read off 7 guesses.
 
-That is fast. But there is a catch. When the drafter guesses position 3, it does not know what positions 1 and 2 turned out to be. Every position has to commit before it sees the tokens in front of it.
+The obvious win is speed. The bigger win is what that speed buys. An autoregressive drafter runs once per token, so it has to stay tiny: EAGLE-3 uses a single transformer layer. A block drafter pays for one pass no matter how many tokens it drafts, so it can afford to be much bigger. DFlash makes exactly this point. Its acceptance keeps going up as the drafter gets deeper, and a five-layer DFlash drafter guessing 16 tokens beats EAGLE-3 guessing 8 on both speed and acceptance. The released DFlash and DSpark drafters we study here both have five layers.
 
-We call this **parallel blindness**. This post is about how much it really costs.
+So parallel drafting is really a trade. You get a much stronger drafter, and you pay with blindness. When the drafter guesses position 3, it does not know what positions 1 and 2 turned out to be. Every position has to commit before it sees the tokens in front of it.
+
+We call this **parallel blindness**. This post is about how much that side of the trade really costs.
 
 ## A short family tree
 
