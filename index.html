@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Xinwei Qiang is a Computer Science PhD student at UC San Diego working on GPU systems, compilers, and distributed systems."
+      content="Xinwei Qiang is a Computer Science PhD student at UC San Diego building efficient GPU systems for AI, spanning GPU kernels, multi-GPU execution, and AI-assisted code generation."
     />
     <title>Xinwei Qiang</title>
     <link rel="canonical" href="https://tie-pilot-qxw.github.io/" />
@@ -38,7 +38,7 @@
             I am a PhD student in Computer Science at the
             <a href="https://ucsd.edu/">University of California San Diego</a>, advised by
             <a href="https://sites.google.com/ucsd.edu/yufeiding">Prof. Yufei Ding</a>.
-            My research interests are <strong>GPU systems, compilers, and distributed systems</strong>.
+            I build efficient <strong>GPU systems for AI</strong>. My research spans GPU kernels, multi-GPU execution, and AI-assisted code generation.
           </p>
           <p class="summary">
             I received my B.E. in Computer Science from Shanghai Jiao Tong University, where I was
@@ -57,18 +57,19 @@
       <section id="news" class="news-section">
         <h2>News</h2>
         <ul class="news-list">
+          <li><time>Oct 2026</time><span><a href="#gf-dit">Plectra</a> is accepted to PPoPP ’27.</span></li>
           <li><time>Oct 2026</time><span>Our blog post on <a href="blog/markov-walk-on-chip/">keeping DSpark’s Markov draft walk on chip</a> is now available, with <a href="https://github.com/tie-pilot-qxw/dspark-markov-walk">code</a> and an <a href="https://github.com/sgl-project/sglang/pull/42855">SGLang PR</a>.</span></li>
           <li><time>Sep 2026</time><span>Our blog post on <a href="blog/beyond-parallel-blindness/">information floors and model gaps in block drafting</a> is now available, with <a href="https://github.com/tie-pilot-qxw/specfloor">code</a> and <a href="https://huggingface.co/TIE-Pilot/dspark-attnconv-block7-qwen3-4b">checkpoints</a>.</span></li>
           <li><time>Sep 2026</time><span><a href="#asymhp">AsymHP</a> is accepted to NeurIPS ’26.</span></li>
           <li><time>Sep 2026</time><span><a href="#impeller">Impeller</a> is accepted to ASPLOS ’27.</span></li>
           <li><time>Sep 2026</time><span>I joined UC San Diego CSE as a PhD student.</span></li>
-          <li><time>Aug 2026</time><span>Our technical note on <a href="blog/reconstructing-a-megakernel-with-pdl/">reconstructing megakernel persistence with PDL</a> is now available.</span></li>
-          <li><time>Jul 2026</time><span><a href="#fluxzk">FluxZK</a> is accepted to SC ’26.</span></li>
-          <li><time>Apr 2026</time><span><a href="#tritongym">TritonGym</a> is accepted to ICML ’26.</span></li>
         </ul>
         <details class="earlier-news">
           <summary>Earlier news</summary>
           <ul class="news-list">
+            <li><time>Aug 2026</time><span>Our technical note on <a href="blog/reconstructing-a-megakernel-with-pdl/">reconstructing megakernel persistence with PDL</a> is now available.</span></li>
+            <li><time>Jul 2026</time><span><a href="#fluxzk">FluxZK</a> is accepted to SC ’26.</span></li>
+            <li><time>Apr 2026</time><span><a href="#tritongym">TritonGym</a> is accepted to ICML ’26.</span></li>
             <li><time>Apr 2026</time><span><a href="#fluxzk">FluxZK</a> is selected for a poster presentation at HPDC ’26.</span></li>
             <li><time>Mar 2026</time><span><a href="#syncopate">Syncopate</a> is accepted to OSDI ’26.</span></li>
             <li><time>Jan 2026</time><span><a href="#dash">DASH</a> is accepted to ICLR ’26.</span></li>
@@ -80,6 +81,17 @@
       <section id="publications">
         <h2>Publications</h2>
         <ol class="publication-list">
+          <li id="gf-dit">
+            <div class="venue-badge">PPoPP ’27</div>
+            <div class="paper-content">
+              <p class="paper-title">Plectra: Scheduling Parallelism for Diffusion Transformer</p>
+              <p><strong>Xinwei Qiang</strong>, Yifan Hu, Shixuan Sun, Jing Yang, Han Zhao, Chen Chen, Yu Feng, Jingwen Leng, Minyi Guo</p>
+              <div class="paper-links">
+                <a href="https://arxiv.org/abs/2606.13501">Paper</a>
+                <a href="https://github.com/SJTU-Liquid/GF-DiT">Code</a>
+              </div>
+            </div>
+          </li>
           <li id="asymhp">
             <div class="venue-badge">NeurIPS ’26</div>
             <div class="paper-content">
@@ -173,17 +185,6 @@
                 <a href="https://arxiv.org/abs/2608.27339">Paper</a>
                 <a href="https://github.com/tie-pilot-qxw/specfloor">Code</a>
                 <a href="blog/beyond-parallel-blindness/">Blog</a>
-              </div>
-            </div>
-          </li>
-          <li id="gf-dit">
-            <div class="venue-badge">arXiv ’26</div>
-            <div class="paper-content">
-              <p class="paper-title">GF-DiT: Scheduling Parallelism for Diffusion Transformer Serving</p>
-              <p><strong>Xinwei Qiang</strong>, Yifan Hu, Shixuan Sun, Jing Yang, Han Zhao, Chen Chen, Yu Feng, Jingwen Leng, Minyi Guo</p>
-              <div class="paper-links">
-                <a href="https://arxiv.org/abs/2606.13501">Paper</a>
-                <a href="https://github.com/SJTU-Liquid/GF-DiT">Code</a>
               </div>
             </div>
           </li>
